@@ -1,18 +1,21 @@
-import '../css/componentes.css';
-// import logotipoWebPack from '../assets/img/webpack-logo.png';
+//Referencias del HTML
+const divTodoList = document.querySelector('.todo-list');
 
-///Originalmente estaba en index.js
-export const saludar = (nombre) => {
-	console.log('Creando etiqueta H1');
+export const crearTodoHtml = (todo) => {
+	const htmlTodo = `
+	<li class="${todo.completado ? 'completed' : ''}" data-id="${todo.id}">
+		<div class="view">
+			<input class="toggle" type="checkbox" ${todo.completado ? 'checked' : ''}>
+			<label>${todo.tarea}</label>
+			<button class="destroy"></button>
+		</div>
+		<input class="edit" value="Create a TodoMVC template" />
+	</li>`;
 
-	const elemento = document.createElement('h1');
-	elemento.innerText = `Hola!! ${nombre}`;
+	const div = document.createElement('div');
+	div.innerHTML = htmlTodo;
 
-	document.body.append(elemento);
+	divTodoList.append(div.firstElementChild); /// El primer elemento(hijo) dentro del DIV
 
-	//img
-	// console.log(logotipoWebPack);
-	// const imagen = document.createElement('img');
-	// imagen.src = logotipoWebPack;
-	// document.body.append(imagen);
+	return div.firstElementChild;
 };
