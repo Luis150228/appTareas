@@ -1,6 +1,6 @@
-# Proyecto base utilizando WebPack
+# Proyecto Lista de Tareas
 
-Este es el proycto inicial para utilizar app utilizando Webpack como base
+Crear una lista de tareas usando javascript y localstorage
 
 ###Notas:
 Reconstruir modulos de Node
