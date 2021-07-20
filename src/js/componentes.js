@@ -9,7 +9,7 @@ export const crearTodoHtml = (todo) => {
 	const htmlTodo = `
 	<li class="${todo.completado ? 'completed' : ''}" data-id="${todo.id}">
 		<div class="view">
-			<input class="toggle" type="checkbox" ${todo.completado ? 'checked' : ''}>
+			<input class="cat" type="checkbox" ${todo.completado ? 'checked' : ''}>
 			<label>${todo.tarea}</label>
 			<button class="destroy"></button>
 		</div>
@@ -36,4 +36,16 @@ txtInput.addEventListener('keyup', (e) => {
 
 		console.log(todoList);
 	}
+});
+
+divTodoList.addEventListener('click', (e) => {
+	//console.log(e.target.localName); //Se identifica el elemento al que se le dio click(e) y lo muestra en consola
+	const nombreElemento = e.target.localName; //Input, Label o button
+	const todoElemento = e.target.parentElement.parentElement; //Regresa o muestra el elemento html en este caso 2 generaciones atras.
+	const todoId = todoElemento.getAttribute('data-id'); //En base al atributo extraemos el ID
+	if (nombreElemento.includes('input')) {
+		todoList.marcarCompletado(todoId);
+		todoElemento.classList.toggle('completed');
+	}
+	console.log(todoList);
 });
