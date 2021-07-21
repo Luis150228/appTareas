@@ -16,6 +16,6 @@ export class Todo {
 	}
 
 	imprimirClase() {
-		console.log(`${this.tarea} - ${this.id}`);
+		// console.log(`${this.tarea} - ${this.id}`);
 	}
 }

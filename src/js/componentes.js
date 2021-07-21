@@ -5,6 +5,8 @@ import {Todo} from '../classes';
 const divTodoList = document.querySelector('.todo-list');
 const txtInput = document.querySelector('.new-todo');
 const btnBorrar = document.querySelector('.clear-completed');
+const ulFiltros = document.querySelector('.filters');
+const anchorFiltros = document.querySelectorAll('.filtro');
 
 export const crearTodoHtml = (todo) => {
 	const htmlTodo = `
@@ -28,14 +30,14 @@ export const crearTodoHtml = (todo) => {
 //Eventos
 txtInput.addEventListener('keyup', (e) => {
 	if (e.keyCode === 13 && txtInput.value.length > 0) {
-		console.log(txtInput.value);
+		// console.log(txtInput.value);
 		const nuevoTodo2 = new Todo(txtInput.value);
 		todoList.nuevoTodo(nuevoTodo2);
 
 		crearTodoHtml(nuevoTodo2);
 		txtInput.value = '';
 
-		console.log(todoList);
+		// console.log(todoList);
 	}
 });
 
@@ -52,7 +54,7 @@ divTodoList.addEventListener('click', (e) => {
 		divTodoList.removeChild(todoElemento);
 	} else {
 	}
-	console.log(todoList);
+	// console.log(todoList);
 });
 
 btnBorrar.addEventListener('click', (e) => {
@@ -65,6 +67,37 @@ btnBorrar.addEventListener('click', (e) => {
 		// console.log(elementoClass);
 		if (elemento.classList.contains('completed')) {
 			divTodoList.removeChild(elemento);
+		}
+	}
+});
+
+ulFiltros.addEventListener('click', (e) => {
+	const filtro = e.target.text;
+	// console.log(filtro);
+	if (!filtro) {
+		return;
+	}
+
+	anchorFiltros.forEach((tareas) => tareas.classList.remove('selected'));
+	// console.log(e.target);
+	e.target.classList.add('selected');
+
+	for (const elemento of divTodoList.children) {
+		// console.log(elemento);
+		elemento.classList.remove('hidden'); //Removemos la clase oculta de todos los elementos de la lista ul
+		const completado = elemento.classList.contains('completed'); //si el elemento de la lista esta con el checkbox y la clase "completed"
+
+		switch (filtro) {
+			case 'Pendientes':
+				if (completado) {
+					elemento.classList.add('hidden');
+				}
+				break;
+			case 'Completados':
+				if (!completado) {
+					elemento.classList.add('hidden');
+				}
+				break;
 		}
 	}
 });

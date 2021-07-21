@@ -14,7 +14,7 @@ crearTodoHtml(tarea);
 
 console.log(todoList);*/
 
-console.log(todoList.todos);
+// console.log(todoList.todos);
 
 todoList.todos.forEach((todo) => crearTodoHtml(todo));
 
