@@ -17,3 +17,5 @@ console.log(todoList);*/
 console.log(todoList.todos);
 
 todoList.todos.forEach((todo) => crearTodoHtml(todo));
+
+todoList.todos[1].imprimirClase();
