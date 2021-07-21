@@ -4,6 +4,7 @@ import {Todo} from '../classes';
 //Referencias del HTML
 const divTodoList = document.querySelector('.todo-list');
 const txtInput = document.querySelector('.new-todo');
+const btnBorrar = document.querySelector('.clear-completed');
 
 export const crearTodoHtml = (todo) => {
 	const htmlTodo = `
@@ -52,4 +53,18 @@ divTodoList.addEventListener('click', (e) => {
 	} else {
 	}
 	console.log(todoList);
+});
+
+btnBorrar.addEventListener('click', (e) => {
+	todoList.eliminarCompletados();
+	for (let i = divTodoList.children.length - 1; i >= 0; i--) {
+		//El For nos indica el elemento actual de los posibles elementos existentes
+		const elemento = divTodoList.children[i];
+		// const elementoClass = elemento.getAttribute('class'); //En base al atributo extraemos el ID
+		// const elementoClass = elemento.classList.contains('completed');
+		// console.log(elementoClass);
+		if (elemento.classList.contains('completed')) {
+			divTodoList.removeChild(elemento);
+		}
+	}
 });
