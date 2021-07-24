@@ -36,6 +36,11 @@ export class TodoList {
 		localStorage.setItem('todo', JSON.stringify(this.todos));
 	}
 
+	guardarTotales() {
+		const comple = this.todos.filter((item) => todo.completado == true);
+		// return comple;
+	}
+
 	cargarLocalStorage() {
 		/*if (localStorage.getItem('todo')) {
 			this.todos = JSON.parse(localStorage.getItem('todo'));

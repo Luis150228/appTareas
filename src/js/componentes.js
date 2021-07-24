@@ -7,6 +7,7 @@ const txtInput = document.querySelector('.new-todo');
 const btnBorrar = document.querySelector('.clear-completed');
 const ulFiltros = document.querySelector('.filters');
 const anchorFiltros = document.querySelectorAll('.filtro');
+const dataCount = document.querySelector('.todo-count');
 
 export const crearTodoHtml = (todo) => {
 	const htmlTodo = `
@@ -25,6 +26,22 @@ export const crearTodoHtml = (todo) => {
 	divTodoList.append(div.firstElementChild); /// El primer elemento(hijo) dentro del DIV
 
 	return div.firstElementChild;
+};
+
+/*export const totalPendientes = () => {
+	const general = todoList.todos;
+
+	const datas = general.filter((item) => {
+		// console.log(item);
+		return (item = false);
+	});
+	console.log('Todos los todo :', general);
+	console.log('los True :', datas);
+};*/
+
+export const totalPendientes = () => {
+	const general = todoList.guardarTotales();
+	console.log('Todos los todo :', general);
 };
 
 //Eventos
@@ -73,7 +90,7 @@ btnBorrar.addEventListener('click', (e) => {
 
 ulFiltros.addEventListener('click', (e) => {
 	const filtro = e.target.text;
-	// console.log(filtro);
+	console.log(filtro);
 	if (!filtro) {
 		return;
 	}
