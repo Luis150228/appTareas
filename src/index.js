@@ -1,7 +1,8 @@
 // import {Todo} from './classes/todo.class';
 // import {TodoList} from './classes/todo-list.class';
 import {Todo, TodoList} from './classes';
-import {crearTodoHtml, totalPendientes} from './js/componentes';
+import {crearTodoHtml} from './js/componentes';
+import {totalTodos} from './js/total-todo';
 import './styles.css';
 
 export const todoList = new TodoList();
@@ -18,6 +19,5 @@ console.log(todoList);*/
 
 todoList.todos.forEach((todo) => crearTodoHtml(todo));
 
-totalPendientes();
-
-todoList.todos[1].imprimirClase();
+console.log(todoList.guardarTotales());
+totalTodos();

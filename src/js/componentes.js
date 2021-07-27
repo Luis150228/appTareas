@@ -1,5 +1,6 @@
 import {todoList} from '..';
 import {Todo} from '../classes';
+import {totalTodos} from './total-todo';
 
 //Referencias del HTML
 const divTodoList = document.querySelector('.todo-list');
@@ -7,7 +8,6 @@ const txtInput = document.querySelector('.new-todo');
 const btnBorrar = document.querySelector('.clear-completed');
 const ulFiltros = document.querySelector('.filters');
 const anchorFiltros = document.querySelectorAll('.filtro');
-const dataCount = document.querySelector('.todo-count');
 
 export const crearTodoHtml = (todo) => {
 	const htmlTodo = `
@@ -39,11 +39,6 @@ export const crearTodoHtml = (todo) => {
 	console.log('los True :', datas);
 };*/
 
-export const totalPendientes = () => {
-	const general = todoList.guardarTotales();
-	console.log('Todos los todo :', general);
-};
-
 //Eventos
 txtInput.addEventListener('keyup', (e) => {
 	if (e.keyCode === 13 && txtInput.value.length > 0) {
@@ -53,6 +48,7 @@ txtInput.addEventListener('keyup', (e) => {
 
 		crearTodoHtml(nuevoTodo2);
 		txtInput.value = '';
+		totalTodos();
 
 		// console.log(todoList);
 	}
@@ -66,9 +62,11 @@ divTodoList.addEventListener('click', (e) => {
 	if (nombreElemento.includes('input')) {
 		todoList.marcarCompletado(todoId);
 		todoElemento.classList.toggle('completed');
+		totalTodos();
 	} else if (nombreElemento.includes('button')) {
 		todoList.eliminarTodo(todoId);
 		divTodoList.removeChild(todoElemento);
+		totalTodos();
 	} else {
 	}
 	// console.log(todoList);
@@ -84,6 +82,7 @@ btnBorrar.addEventListener('click', (e) => {
 		// console.log(elementoClass);
 		if (elemento.classList.contains('completed')) {
 			divTodoList.removeChild(elemento);
+			totalTodos();
 		}
 	}
 });

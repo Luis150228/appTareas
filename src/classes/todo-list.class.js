@@ -14,6 +14,7 @@ export class TodoList {
 	eliminarTodo(id) {
 		this.todos = this.todos.filter((todo) => todo.id != id);
 		this.guardarLocalStorage();
+		// this.guardarTotales();
 	}
 
 	marcarCompletado(id) {
@@ -22,6 +23,7 @@ export class TodoList {
 			if (todo.id == id) {
 				todo.completado = !todo.completado;
 				this.guardarLocalStorage();
+				// this.guardarTotales();
 				break;
 			}
 		}
@@ -30,6 +32,7 @@ export class TodoList {
 	eliminarCompletados() {
 		this.todos = this.todos.filter((todo) => !todo.completado);
 		this.guardarLocalStorage();
+		// this.guardarTotales();
 	}
 
 	guardarLocalStorage() {
@@ -37,8 +40,10 @@ export class TodoList {
 	}
 
 	guardarTotales() {
-		const comple = this.todos.filter((item) => todo.completado == true);
-		// return comple;
+		const filtroTotal = this.todos.filter((item) => item.completado == false);
+		const numTotal = filtroTotal.length;
+
+		return numTotal;
 	}
 
 	cargarLocalStorage() {
